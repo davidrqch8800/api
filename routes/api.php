@@ -14,5 +14,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Route::resource('contract_types', ContractTypeController::class);
 // Route::resource('media_contacts', MediaContactController::class);
-// Route::resource('professors', ProfessorController::class);
-Route::resource('academical_work_experiences', AcademicalWorkExperienceController::class);
+Route::apiResource('professors', ProfessorController::class);
+// Route::resource('academical_work_experiences', AcademicalWorkExperienceController::class);
