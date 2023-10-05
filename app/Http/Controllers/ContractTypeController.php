@@ -4,43 +4,73 @@ namespace App\Http\Controllers;
 
 use App\Models\ContractType;
 use Illuminate\Http\Request;
+use App\Http\Responses\ApiResponse;
+use Exception;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\Rule;
 
 class ContractTypeController extends Controller
 {
     public function index()
     {
-        return ContratType::all();
+        try{
+            $contract_types = ContractType::all();
+            return ApiResponse::success('Lista de Tipos de contrato', 200, $contract_types);
+        } catch(Exception $e){
+            return ApiResponse::error('Ocurrio un error: '.$e->getMessage(), 500);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        try{
+            $request->validate([
+                'type' => 'required'
+            ]);
+
+            $contract_type = ContractType::create($request->all());
+            return ApiResponse::success('Tipo de contrato creado exitosamente', 201, $contract_type);
+        } catch(ValidationException $e){
+            return ApiResponse::error('Error de validacion: '.$e->getMessage(), 422);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ContractType $contractType)
+    public function show($id)
     {
-        //
+        try{
+            $contract_type = ContractType::findOrFail($id);
+            return ApiResponse::success('Tipo de contrato obtenido exitosamente', 200, $contract_type);
+        } catch(ModelNotFoundException $e){
+            return ApiResponse::error('Tipo de contrato no encontrado', 404);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, ContractType $contractType)
+    public function update(Request $request, $id)
     {
-        //
+        try{
+            $contract_type = ContractType::findOrFail($id);
+            $request->validate([
+                'type' => 'required'
+            ]);
+
+            $contract_type -> update($request->all());
+            return ApiResponse::success('Tipo de contrato actualizado correctamente', 200, $contract_type);
+        } catch(ModelNotFoundException $e){
+            return ApiResponse::error('Tipo de contrato no encontrado: '.$e->getMessage(), 404);
+        } catch(Exception $e){
+            return ApiResponse::error('Error: '.$e-> getMessage(), 422);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(ContractType $contractType)
+    public function destroy($id)
     {
-        //
+        try{
+            $contract_type = ContractType::findOrFail($id);
+            $contract_type -> delete();
+            return ApiResponse::success('Tipo de contrato eliminado exitosamente', 200);
+        } catch(ModelNotFoundException $e){
+            return ApiResponse::error('Tipo de contrato no encontrado: '.$e->getMessage(), 404);
+        }
     }
 }

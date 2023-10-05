@@ -12,7 +12,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-// Route::resource('contract_types', ContractTypeController::class);
+Route::apiResource('contract_types', ContractTypeController::class);
 // Route::resource('media_contacts', MediaContactController::class);
 Route::apiResource('professors', ProfessorController::class);
 // Route::resource('academical_work_experiences', AcademicalWorkExperienceController::class);
+Route::apiResource('updateLastName', ProfessorController::class);
+// Route::apiResource('professors/updateMotherLastName', ProfessorController::class);
+// Route::apiResource('professors/updateFirstName', ProfessorController::class);
+// // Route::apiResource('professors/{id}/updateBirthDate', [ProfessorController::class, 'updateBirthDate'])->name('professors.updateBirthDate');
+// Route::apiResource('professors/updateNationality', ProfessorController::class);
+// Route::apiResource('professors/updateUbigeoCode', ProfessorController::class);
+// Route::apiResource('professors/updateGender', ProfessorController::class);

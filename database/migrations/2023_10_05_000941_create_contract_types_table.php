@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('contract_types', function (Blueprint $table) {
             $table->id();
-            $table->string('type', 32)->nullable();
+            $table->string('type', 32);
             $table->string('category', 32)->nullable();
             $table->char('classification', 3)->nullable();
             $table->timestamps();

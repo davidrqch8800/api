@@ -38,7 +38,7 @@ class ProfessorController extends Controller
             ]);
 
             $professor = Professor::create($request->all());
-            return ApiREsponse::success('Profesor creado exitosamente', 201, $professor);
+            return ApiResponse::success('Profesor creado exitosamente', 201, $professor);
         } catch(ValidationException $e){
             return ApiResponse::error('Error de validacion: '.$e->getMessage(), 422);
         }
@@ -71,7 +71,7 @@ class ProfessorController extends Controller
             ]);
 
             $professor -> update($request->all());
-            return ApiREsponse::success('Profesor actualizado exitosamente', 200, $professor);
+            return ApiResponse::success('Profesor actualizado exitosamente', 200, $professor);
         } catch(ModelNotFoundException $e){
             return ApiResponse::error('Profesor no encontrado: '.$e->getMessage(), 404);
         } catch(Exception $e){
@@ -89,4 +89,70 @@ class ProfessorController extends Controller
             return ApiResponse::error('Profesor no encontrado: '.$e->getMessage(), 404);
         }
     }
+
+    public function updateLastName(Request $request, $id)
+    {
+        try {
+            $professor = Professor::findOrFail($id);
+
+            $request->validate([
+                'dni' => ['required', Rule::unique('professors')->ignore($professor)],
+                'lastName' => 'required|string|max:40'
+            ]);
+
+            $professor -> save();
+
+            return ApiResponse::success('Profesor actualizado exitosamente', 200, $professor);
+        } catch (ModelNotFoundException $e) {
+            return ApiResponse::error('Profesor no encontrado: '.$e->getMessage(), 404);
+        } catch (Exception $e) {
+            return ApiResponse::error('Error: '.$e-> getMessage(), 422);
+        }
+    }
+
+    // public function updateMotherLastName(Request $request, $id)
+    // {
+    //     return $this->updateAttribute($request, $id, 'MotherLastName');
+    // }
+
+    // public function updateFirstName(Request $request, $id)
+    // {
+    //     return $this->updateAttribute($request, $id, 'FirstName');
+    // }
+
+    // public function updateBirthDate(Request $request, $id)
+    // {
+    //     return $this->updateAttribute($request, $id, 'BirthDate');
+    // }
+
+    // public function updateNationality(Request $request, $id)
+    // {
+    //     return $this->updateAttribute($request, $id, 'Nationality');
+    // }
+
+    // public function updateUbigeoCode(Request $request, $id)
+    // {
+    //     return $this->updateAttribute($request, $id, 'UbigeoCode');
+    // }
+
+    // public function updateGender(Request $request, $id)
+    // {
+    //     return $this->updateAttribute($request, $id, 'Gender');
+    // }
+
+    // private function updateAttribute(Request $request, $id, $attribute)
+    // {
+    //     try {
+    //         $professor = Professor::findOrFail($id);
+
+    //         $professor->save();
+
+    //         return ApiREsponse::success('Profesor actualizado exitosamente', 200, $professor);
+    //     } catch (ModelNotFoundException $e) {
+    //         return ApiResponse::error('Profesor no encontrado: '.$e->getMessage(), 404);
+    //     } catch (Exception $e) {
+    //         return ApiResponse::error('Error: '.$e-> getMessage(), 422);
+    //     }
+    // }
+
 }
