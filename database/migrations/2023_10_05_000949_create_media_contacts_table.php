@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('media_contacts', function (Blueprint $table) {
             $table->id();
+            $table->string('address');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('socialMedia')->nullable();
+            $table->string('linkSocialNetwork', 64)->nullable();        
             $table->timestamps();
+
         });
     }
 
