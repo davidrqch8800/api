@@ -19,7 +19,7 @@ class Professor extends Model
         'mediaContactId'
     ];
 
-    public function academical_work_experience(){
+    public function academical_work_experiences(){
         return $this->hasMany(AcademicalWorkExperience::class);
     }
 
