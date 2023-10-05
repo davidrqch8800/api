@@ -14,8 +14,8 @@ return new class extends Migration
             $table->char('typeInstitution', 3)->nullable();
             $table->string('position', 64);
             $table->char('typePosition', 3)->nullable();
-            $table->dateTime('startedAt');
-            $table->dateTime('endedAt');
+            $table->date('startedAt');
+            $table->date('endedAt');
             $table->unsignedBigInteger('contractTypeId');
             $table->unsignedBigInteger('professorId');
             $table->timestamps();
