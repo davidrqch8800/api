@@ -7,12 +7,9 @@ use Illuminate\Http\Request;
 
 class ContractTypeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return ContratType::all();
     }
 
     /**
