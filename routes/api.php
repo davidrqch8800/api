@@ -13,7 +13,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::apiResource('contract_types', ContractTypeController::class);
-// Route::resource('media_contacts', MediaContactController::class);
+Route::resource('media_contacts', MediaContactController::class);
 Route::apiResource('professors', ProfessorController::class);
 Route::apiResource('academical_work_experiences', AcademicalWorkExperienceController::class);
 Route::apiResource('updateLastName', ProfessorController::class);

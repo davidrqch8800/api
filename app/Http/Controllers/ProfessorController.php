@@ -30,11 +30,11 @@ class ProfessorController extends Controller
                 'lastName' => 'required|string|max:40',
                 'motherLastName' => 'required|string|max:40',
                 'firstName' => 'required|string|max:40',
-                // 'birthDate' => 'required|date',
+                'birthDate' => 'required|date',
                 'gender'=> 'required', 
                 'nationality' => 'required', 
                 'ubigeoCode' => 'required',
-                // 'mediaContactId'
+                'mediaContactId'=> 'required|exists:media_contacts,id'
             ]);
 
             $professor = Professor::create($request->all());
@@ -63,11 +63,11 @@ class ProfessorController extends Controller
                 'lastName' => 'required|string|max:40',
                 'motherLastName' => 'required|string|max:40',
                 'firstName' => 'required|string|max:40',
-                // 'birthDate' => 'required|date',
+                'birthDate' => 'required|date',
                 'gender'=> 'required', 
                 'nationality' => 'required', 
                 'ubigeoCode' => 'required',
-                // 'mediaContactId'
+                'mediaContactId'=> 'required|exists:media_contacts,id'
             ]);
 
             $professor -> update($request->all());

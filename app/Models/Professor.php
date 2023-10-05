@@ -13,11 +13,11 @@ class Professor extends Model
         'lastName',
         'motherLastName',
         'firstName',
-        // 'birthDate',
+        'birthDate',
         'gender', 
         'nationality', 
         'ubigeoCode',
-        // 'mediaContactId'
+        'mediaContactId'
     ];
 
     public function academical_work_experiences(){

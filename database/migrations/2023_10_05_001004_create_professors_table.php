@@ -14,14 +14,14 @@ return new class extends Migration
             $table->string('lastName', 40);
             $table->string('motherLastName', 40);
             $table->string('firstName', 40);
-            // $table->date('birthDate');
+            $table->date('birthDate');
             $table->char('gender', 1);
             $table->char('nationality', 3);
             $table->char('ubigeoCode', 6);
-            // $table->unsignedBigInteger('mediaContactId');
+            $table->unsignedBigInteger('mediaContactId');
             $table->timestamps();
 
-            // $table->foreign('mediaContactId')->references('id')->on('media_contacts');
+            $table->foreign('mediaContactId')->references('id')->on('media_contacts');
         });
     }
 
