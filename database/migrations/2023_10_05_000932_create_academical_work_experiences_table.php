@@ -16,7 +16,12 @@ return new class extends Migration
             $table->char('typePosition', 3)->nullable();
             $table->dateTime('startedAt');
             $table->dateTime('endedAt');
+            $table->unsignedBigInteger('contractTypeId');
+            $table->unsignedBigInteger('professorId');
             $table->timestamps();
+
+            $table->foreign('contractTypeId')->references('id')->on('contract_types');
+            $table->foreign('professorId')->references('id')->on('professors');
         });
     }
 
