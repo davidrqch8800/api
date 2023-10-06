@@ -17,7 +17,7 @@ class MediaContactController extends Controller
     {
         try{
             $media_contacts = MediaContact::all();
-            return ApiResponse::success('Lista de contacto', 200, $contract_types);
+            return ApiResponse::success('Lista de contacto', 200, $media_contacts);
         } catch(Exception $e){
             return ApiResponse::error('Ocurrio un error: '.$e->getMessage(), 500);
         }
