@@ -90,25 +90,43 @@ class ProfessorController extends Controller
         }
     }
 
-    public function updateLastName(Request $request, $id)
+
+
+    public function experienciaProfessor($id)
     {
-        try {
-            $professor = Professor::findOrFail($id);
-
-            $request->validate([
-                'dni' => ['required', Rule::unique('professors')->ignore($professor)],
-                'lastName' => 'required|string|max:40'
-            ]);
-
-            $professor -> save();
-
-            return ApiResponse::success('Profesor actualizado exitosamente', 200, $professor);
-        } catch (ModelNotFoundException $e) {
-            return ApiResponse::error('Profesor no encontrado: '.$e->getMessage(), 404);
-        } catch (Exception $e) {
-            return ApiResponse::error('Error: '.$e-> getMessage(), 422);
+        try{
+            $professor = Professor::with('academical_work_experiences')->findOrFail($id);
+            return ApiResponse::success('Profesor y lista de experiencia', 200, $professor);
+        } catch(ModelNotFoundException $e){
+            return ApiResponse::error('Profesor no encontrado: ', 404);
         }
     }
+
+
+
+
+    // public function updateLastName(Request $request, $id)
+    // {
+    //     try {
+    //         $professor = Professor::findOrFail($id);
+
+    //         $request->validate([
+    //             'dni' => ['required', Rule::unique('professors')->ignore($professor)],
+    //             'lastName' => 'required|string|max:40'
+    //         ]);
+
+    //         $professor -> save();
+
+    //         return ApiResponse::success('Profesor actualizado exitosamente', 200, $professor);
+    //     } catch (ModelNotFoundException $e) {
+    //         return ApiResponse::error('Profesor no encontrado: '.$e->getMessage(), 404);
+    //     } catch (Exception $e) {
+    //         return ApiResponse::error('Error: '.$e-> getMessage(), 422);
+    //     }
+    // }
+
+    
+
 
     // public function updateMotherLastName(Request $request, $id)
     // {

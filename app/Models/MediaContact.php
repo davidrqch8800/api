@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class MediaContact extends Model
 {
@@ -17,7 +18,7 @@ class MediaContact extends Model
         'linkSocialNetwork'
     ];
     
-    public function professor(){
+    public function professor(): BelongsTo{
         return $this->belogsTo(Professor::class);
     }
 }
