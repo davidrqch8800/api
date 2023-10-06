@@ -92,10 +92,45 @@ class ProfessorController extends Controller
 
 
 
-    public function experienciaProfessor($id)
+
+    public function updateAttributee(Request $request, $id)
+{
+    try {
+        $professor = Professor::findOrFail($id);
+
+        $request->validate([
+            'dni' => [ Rule::unique('professors')->ignore($professor)],
+            'lastName' => 'string|max:40',
+            'motherLastName' => 'string|max:40',
+            'firstName' => 'string|max:40',
+            'birthDate' => 'date',
+            'gender'=> 'string|size:1', 
+            'nationality' => 'string|size:3', 
+            'ubigeoCode' => 'string|size:6',
+            'mediaContactId'=> 'exists:media_contacts,id'
+        ]);
+        
+        $dataToUpdate = $request->only([
+            'dni', 'lastName', 'motherLastName', 'firstName', 
+            'birthDate', 'gender', 'nationality', 'ubigeoCode', 'mediaContactId'
+        ]);
+
+        $professor->update($dataToUpdate);
+
+        return ApiResponse::success('Profesor actualizado exitosamente', 200, $professor);
+    } catch (ModelNotFoundException $e) {
+        return ApiResponse::error('Profesor no encontrado: '.$e->getMessage(), 404);
+    } catch (Exception $e) {
+        return ApiResponse::error('Error: '.$e->getMessage(), 422);
+    }
+}
+
+
+
+    public function productos($id)
     {
         try{
-            $professor = Professor::with('academical_work_experiences')->findOrFail($id);
+            $professor = Professor::with('academical_work_experiences')->findOrFail($id)->get();
             return ApiResponse::success('Profesor y lista de experiencia', 200, $professor);
         } catch(ModelNotFoundException $e){
             return ApiResponse::error('Profesor no encontrado: ', 404);

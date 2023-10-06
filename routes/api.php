@@ -17,7 +17,7 @@ Route::apiResource('media_contacts', MediaContactController::class);
 Route::apiResource('professors', ProfessorController::class);
 Route::apiResource('academical_work_experiences', AcademicalWorkExperienceController::class);
 Route::apiResource('updateLastName', ProfessorController::class);
-Route::get('professors/{professor}/academical_work_experiences', [ProfessorController::class, 'experienciaProfessor']);
+Route::patch('professors/{professor}/edit', [ProfessorController::class, 'updateAttributee']);
 
 
 // Route::apiResource('professors/updateMotherLastName', ProfessorController::class);
