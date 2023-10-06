@@ -7,16 +7,16 @@ use App\Http\Controllers\MediaContactController;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\AcademicalWorkExperienceController;
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
 Route::apiResource('contract_types', ContractTypeController::class);
 Route::apiResource('media_contacts', MediaContactController::class);
 Route::apiResource('professors', ProfessorController::class);
 Route::apiResource('academical_work_experiences', AcademicalWorkExperienceController::class);
-Route::apiResource('updateLastName', ProfessorController::class);
+// Route::apiResource('updateLastName', ProfessorController::class);
 Route::patch('professors/{professor}/edit', [ProfessorController::class, 'updateAttributee']);
 
 
