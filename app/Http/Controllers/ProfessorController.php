@@ -16,7 +16,7 @@ class ProfessorController extends Controller
     {
         try{
             $professors = Professor::all();
-            return ApiResponse::success('Lista de Profesores', 200, $professors);
+            return ApiResponse::success('Lista de ProfesorEZ', 200, $professors);
         } catch(Exception $e){
             return ApiResponse::error('Ocurrio un error: '.$e->getMessage(), 500);
         }
