@@ -37,6 +37,8 @@ ahora hacer la migracion:
 ```sh
 php artisan migrate
 ```
+A continuación se mostrara el siguiente mensaje `Would you like to create it? (yes/no) [no]`, escribir  `yes` para crear el DB.
+
 y por ultimo 
 ```sh
 php artisan serve
