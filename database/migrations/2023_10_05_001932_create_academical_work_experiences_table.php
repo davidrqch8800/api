@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('academical_work_experiences', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->string('institution', 256);
             $table->char('typeInstitution', 3)->nullable();
             $table->string('position', 64);
@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('startedAt');
             $table->date('endedAt');
             $table->unsignedBigInteger('contractTypeId');
-            $table->unsignedBigInteger('professorId');
+            $table->char('professorId', 36);
             $table->timestamps();
 
             $table->foreign('contractTypeId')->references('id')->on('contract_types');

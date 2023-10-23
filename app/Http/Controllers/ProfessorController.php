@@ -32,9 +32,10 @@ class ProfessorController extends Controller
                 'firstName' => 'required|string|max:40',
                 'birthDate' => 'required|date',
                 'gender'=> 'required', 
-                'nationality' => 'required', 
+                'nationality' => 'required|string|max:3', 
                 'ubigeoCode' => 'required',
                 'mediaContactId'=> 'required|exists:media_contacts,id'
+                
             ]);
 
             $professor = Professor::create($request->all());
