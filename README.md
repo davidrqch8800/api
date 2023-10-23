@@ -21,7 +21,19 @@ Generar la Key:
 php artisan key:generate
 ```
 
-y hacer la migracion:
+## Configuración
+
+Ahora debes configurar algunos datos para tu aplicación, como la el nombre de la BD. Dirígete al archivo `.env`. Aqui modificar el nombre por `apiLaravel` como se muestra acontinuación:
+
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=apiLaravel
+DB_USERNAME=root
+DB_PASSWORD=
+```
+ahora hacer la migracion:
 ```sh
 php artisan migrate
 ```
