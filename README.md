@@ -10,6 +10,10 @@ Una vez que esté instalado, debes hacer una copia de `.env`.
 ```sh
 cp .env.example .env
 ```
+Ahora instalar composer:
+```sh
+composer install
+```
 
 Generar la Key:
 
@@ -17,10 +21,6 @@ Generar la Key:
 php artisan key:generate
 ```
 
-Ahora instalar composer:
-```sh
-composer install
-```
 y hacer la migracion:
 ```sh
 php artisan migrate
